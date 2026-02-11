@@ -5,4 +5,5 @@ Bot Telegram educacional desenvolvido em TypeScript.
 ## Instalação
 
 ```bash
+
 npm install
