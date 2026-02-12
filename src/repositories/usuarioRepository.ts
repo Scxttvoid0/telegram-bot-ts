@@ -57,11 +57,12 @@ export function adicionarCompra(userId: number, numero: string, valor: number): 
   const usuarios = getUsuarios()
   if (usuarios[userId]) {
     usuarios[userId].compras += 1
-    usuarios[userId].historico.push({
-      : dayjs().format('DD/MM/YYYY HH:mm'),  // ← CORRIGIDO: faltava o nome da chave "data"
-      numero,
-      valor
-    })
+    const novaCompra = {
+      data: dayjs().format('DD/MM/YYYY HH:mm'),
+      numero: numero,
+      valor: valor
+    }
+    usuarios[userId].historico.push(novaCompra)
     setUsuarios(usuarios)
   }
 }
