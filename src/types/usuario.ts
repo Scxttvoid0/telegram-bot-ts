@@ -17,7 +17,7 @@ export interface Usuario {
 }
 
 export interface Compra {
-   string
+   string  // ← CORRIGIDO: era " string" (errado)
   numero: string
   valor: number
 }
