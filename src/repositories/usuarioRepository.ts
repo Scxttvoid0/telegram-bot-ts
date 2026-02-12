@@ -58,7 +58,7 @@ export function adicionarCompra(userId: number, numero: string, valor: number): 
   if (usuarios[userId]) {
     usuarios[userId].compras += 1
     const novaCompra = {
-      data: dayjs().format('DD/MM/YYYY HH:mm'),
+       dayjs().format('DD/MM/YYYY HH:mm'),  // ← CORRIGIDO: usar "data" igual à interface
       numero: numero,
       valor: valor
     }
