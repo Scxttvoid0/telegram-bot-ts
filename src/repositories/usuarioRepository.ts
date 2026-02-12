@@ -24,7 +24,6 @@ export function getUsuarioData(userId: number, indicadorId?: number): Usuario {
     setUsuarios(usuarios)
   }
   
-  // Atualizar indicador se necessário
   if (indicadorId && !usuarios[userId].indicador_id) {
     usuarios[userId].indicador_id = indicadorId
     const indicador = usuarios[indicadorId]
@@ -57,12 +56,11 @@ export function adicionarCompra(userId: number, numero: string, valor: number): 
   const usuarios = getUsuarios()
   if (usuarios[userId]) {
     usuarios[userId].compras += 1
-    const novaCompra = {
-       dayjs().format('DD/MM/YYYY HH:mm'),  // ← CORRIGIDO: usar "data" igual à interface
+    usuarios[userId].historico.push({
+      data_compra: dayjs().format('DD/MM/YYYY HH:mm'),
       numero: numero,
       valor: valor
-    }
-    usuarios[userId].historico.push(novaCompra)
+    })
     setUsuarios(usuarios)
   }
 }
