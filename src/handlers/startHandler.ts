@@ -45,17 +45,19 @@ export async function startHandler(ctx: Context) {
 
   if (configInterface.avisos.length > 0) {
     msg += `⚠️ <b>AVISOS:</b>\n`
-    configInterface.avisos.forEach(aviso => {
+    // ✅ CORRIGIDO: usar for...of em vez de forEach sem tipagem
+    for (const aviso of configInterface.avisos) {
       msg += `• ${aviso}\n`
-    })
+    }
     msg += `\n`
   }
 
   if (configInterface.dicas.length > 0) {
     msg += `💡 <b>DICAS:</b>\n`
-    configInterface.dicas.forEach(dica => {
+    // ✅ CORRIGIDO: usar for...of em vez de forEach sem tipagem
+    for (const dica of configInterface.dicas) {
       msg += `• ${dica}\n`
-    })
+    }
     msg += `\n`
   }
 
