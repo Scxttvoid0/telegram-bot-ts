@@ -17,7 +17,7 @@ export interface Usuario {
 }
 
 export interface Compra {
-   string  // ← CORRIGIDO: era " string" sem os dois pontos
+  data_compra: string
   numero: string
   valor: number
 }
