@@ -1,0 +1,44 @@
+import { Telegraf } from 'telegraf'
+import dotenv from 'dotenv'
+import { carregarDados } from './repositories/dadosRepository'
+import { registerHandlers } from './handlers'
+
+dotenv.config()
+
+const BOT_TOKEN = process.env.BOT_TOKEN
+const DONO_ID = process.env.DONO_ID
+
+if (!BOT_TOKEN) {
+  console.error('❌ BOT_TOKEN não configurado no .env')
+  process.exit(1)
+}
+
+console.log('🚀 Iniciando bot Telegram...')
+
+// Carregar dados
+carregarDados()
+
+// Criar instância do bot
+const bot = new Telegraf(BOT_TOKEN)
+
+// Registrar handlers
+registerHandlers(bot)
+
+// Iniciar bot
+bot.launch()
+
+console.log('✅ Bot iniciado com sucesso!')
+console.log(`👑 Dono ID: ${DONO_ID}`)
+
+// Graceful shutdown
+process.once('SIGINT', () => {
+  console.log('🛑 Encerrando bot...')
+  bot.stop('SIGINT')
+  process.exit(0)
+})
+
+process.once('SIGTERM', () => {
+  console.log('🛑 Encerrando bot...')
+  bot.stop('SIGTERM')
+  process.exit(0)
+})
