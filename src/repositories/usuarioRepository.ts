@@ -58,7 +58,7 @@ export function adicionarCompra(userId: number, numero: string, valor: number): 
   if (usuarios[userId]) {
     usuarios[userId].compras += 1
     usuarios[userId].historico.push({
-      data: dayjs().format('DD/MM/YYYY HH:mm'),  // ← CORRIGIDO: faltava "data:"
+       dayjs().format('DD/MM/YYYY HH:mm'),  // ← CORRIGIDO: era "data" (errado)
       numero,
       valor
     })
